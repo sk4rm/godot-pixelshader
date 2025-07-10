@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://lydi26lywoxd"]
+
+[ext_resource type="Texture2D" uid="uid://chkovfoxqdyh5" path="res://instant_noodle.png" id="1_81i80"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0mpbp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_psxjj"]
+albedo_texture = ExtResource("1_81i80")
+
+[sub_resource type="BoxMesh" id="BoxMesh_cuq87"]
+
+[sub_resource type="Animation" id="Animation_81i80"]
+resource_name = "spin"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody3D")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.1, 0, 2, 1, 0, -0.1, 0, 4, 1, 0, 0.1, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 2, 1, 0, -1, 0, 0, 4, 1, 0, 0, 0, -1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuq87"]
+_data = {
+&"spin": SubResource("Animation_81i80")
+}
+
+[node name="Ramen" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_0mpbp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+material_override = SubResource("StandardMaterial3D_psxjj")
+mesh = SubResource("BoxMesh_cuq87")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cuq87")
+}
+autoplay = "spin"

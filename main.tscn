@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://6cvij2itu5yl"]
+
+[ext_resource type="Shader" uid="uid://cdmfj8qfgnfi4" path="res://main.tres" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://lydi26lywoxd" path="res://ramen.tscn" id="1_ig7tw"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
+render_priority = 0
+shader = ExtResource("1_0xm2m")
+shader_parameter/normal_step_edge_1 = 0.2
+shader_parameter/normal_step_edge_2 = 0.2
+shader_parameter/normal_indicator_edge_bias = Vector3(1, 1, 1)
+shader_parameter/depth_smooth_step_edge_0 = 0.25
+shader_parameter/depth_smooth_step_edge_1 = 0.3
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+sky = SubResource("Sky_0xm2m")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+size = Vector2i(384, 216)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.707107, -0.353553, 0.612373, 0, 0.866026, 0.499999, -0.707107, -0.353553, 0.612373, 3, 3, 3)
+
+[node name="PixelOutlinePPFX" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_ig7tw")
+surface_material_override/0 = SubResource("ShaderMaterial_0xm2m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_h2yge")
+
+[node name="Ramen" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_ig7tw")]

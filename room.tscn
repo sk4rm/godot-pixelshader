@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://clvs17qownf7i"]
+
+[ext_resource type="PackedScene" uid="uid://b7fqh3obpr3r0" path="res://block.tscn" id="1_88gup"]
+
+[sub_resource type="Environment" id="Environment_v321d"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Room" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 2, 3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v321d")
+
+[node name="Block" parent="." instance=ExtResource("1_88gup")]
+transform = Transform3D(19.9888, 0, 0, 0, 0.999439, 0, 0, 0, 19.9888, 0, 0, 0)
