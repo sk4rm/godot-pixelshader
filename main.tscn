@@ -10,11 +10,7 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 render_priority = 0
 shader = ExtResource("1_0xm2m")
-shader_parameter/normal_step_edge_1 = 0.2
-shader_parameter/normal_step_edge_2 = 0.2
-shader_parameter/normal_indicator_edge_bias = Vector3(1, 1, 1)
-shader_parameter/depth_smooth_step_edge_0 = 0.25
-shader_parameter/depth_smooth_step_edge_1 = 0.3
+shader_parameter/low_res_fix = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -41,7 +37,9 @@ stretch = true
 stretch_shrink = 3
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(384, 216)
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.707107, -0.353553, 0.612373, 0, 0.866026, 0.499999, -0.707107, -0.353553, 0.612373, 3, 3, 3)
