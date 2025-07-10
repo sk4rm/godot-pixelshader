@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://6cvij2itu5yl"]
+[gd_scene load_steps=5 format=3 uid="uid://6cvij2itu5yl"]
 
 [ext_resource type="Shader" uid="uid://cdmfj8qfgnfi4" path="res://main.tres" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://lydi26lywoxd" path="res://ramen.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cyfe3e152muc5" path="res://grassy_field.tscn" id="2_0xm2m"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 flip_faces = true
@@ -10,23 +10,15 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 render_priority = 0
 shader = ExtResource("1_0xm2m")
-shader_parameter/low_res_fix = true
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_0xm2m"]
-sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
-
-[sub_resource type="Environment" id="Environment_h2yge"]
-sky = SubResource("Sky_0xm2m")
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+shader_parameter/line_highlight = 0.2
+shader_parameter/magic_fix = true
+shader_parameter/line_shadow = 0.55
 
 [node name="Main" type="Node3D"]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="PixelCamera3D" type="Node3D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PixelCamera3D"]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,22 +26,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 3
+stretch_shrink = 4
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="PixelCamera3D/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(384, 216)
+size = Vector2i(288, 162)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.707107, -0.353553, 0.612373, 0, 0.866026, 0.499999, -0.707107, -0.353553, 0.612373, 3, 3, 3)
+[node name="Camera3D" type="Camera3D" parent="PixelCamera3D/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.706625, -0.353794, 0.612789, -1.77636e-15, 0.866026, 0.499999, -0.707588, -0.353312, 0.611956, 61.8038, 56.6023, 51.1396)
+projection = 1
+size = 65.038
 
-[node name="PixelOutlinePPFX" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+[node name="PixelOutlinePPFX" type="MeshInstance3D" parent="PixelCamera3D/SubViewportContainer/SubViewport/Camera3D"]
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_ig7tw")
 surface_material_override/0 = SubResource("ShaderMaterial_0xm2m")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
-environment = SubResource("Environment_h2yge")
-
-[node name="Ramen" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_ig7tw")]
+[node name="GrassyField" parent="." instance=ExtResource("2_0xm2m")]
