@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://lydi26lywoxd"]
 
-[ext_resource type="Texture2D" uid="uid://chkovfoxqdyh5" path="res://instant_noodle.png" id="1_81i80"]
+[ext_resource type="Texture2D" uid="uid://chkovfoxqdyh5" path="res://images/instant_noodle.png" id="1_81i80"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0mpbp"]
 

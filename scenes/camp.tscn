@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyfe3e152muc5"]
+
+[ext_resource type="PackedScene" uid="uid://c64u6l2cre1lk" path="res://scenes/plains.tscn" id="1_wotge"]
+[ext_resource type="PackedScene" uid="uid://dehxbu4d7jta1" path="res://scenes/campfire.tscn" id="2_megki"]
+[ext_resource type="PackedScene" uid="uid://b8whbujh6xbfq" path="res://scenes/tent.tscn" id="3_fxwhq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_na0ka"]
+sky_top_color = Color(0.324316, 0.429185, 0.736518, 1)
+sky_horizon_color = Color(0.687235, 0.647831, 0.771488, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_megki"]
+sky_material = SubResource("ProceduralSkyMaterial_na0ka")
+
+[sub_resource type="Environment" id="Environment_nioy1"]
+background_mode = 2
+background_color = Color(0.227808, 0.565672, 0.826535, 1)
+sky = SubResource("Sky_megki")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Camp" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_specular = 0.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nioy1")
+
+[node name="Plains" parent="." instance=ExtResource("1_wotge")]
+
+[node name="Campfire" parent="." instance=ExtResource("2_megki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649856, 0)
+
+[node name="Tent" parent="." instance=ExtResource("3_fxwhq")]
+transform = Transform3D(0.963299, 0, 0.268432, 0, 1, 0, -0.268432, 0, 0.963299, -0.520275, 0.614247, -3.03671)
+
+[node name="Tent2" parent="." instance=ExtResource("3_fxwhq")]
+transform = Transform3D(0.449381, 0, -0.89334, 0, 1, 0, 0.89334, 0, 0.449381, 2.59196, 0.614247, -1.57973)

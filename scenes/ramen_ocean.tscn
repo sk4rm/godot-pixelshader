@@ -1,9 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://clvs17qownf7i"]
 
-[ext_resource type="PackedScene" uid="uid://b7fqh3obpr3r0" path="res://block.tscn" id="1_88gup"]
-[ext_resource type="PackedScene" uid="uid://lydi26lywoxd" path="res://ramen.tscn" id="2_bisa2"]
+[ext_resource type="PackedScene" uid="uid://b7fqh3obpr3r0" path="res://scenes/block.tscn" id="1_88gup"]
+[ext_resource type="PackedScene" uid="uid://lydi26lywoxd" path="res://scenes/ramen.tscn" id="2_bisa2"]
 
 [sub_resource type="Environment" id="Environment_v321d"]
+background_mode = 1
+background_color = Color(0.421394, 0.625404, 0.883421, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
@@ -11,6 +13,10 @@ ambient_light_color = Color(1, 1, 1, 1)
 albedo_color = Color(0.142474, 0.527787, 0.715352, 1)
 
 [node name="RamenOcean" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v321d")
@@ -35,5 +41,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72644, 2, 1.5752)
 
 [node name="Ramen5" parent="." instance=ExtResource("2_bisa2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+
+[node name="Ramen6" parent="." instance=ExtResource("2_bisa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8121, 2, 7.90961)
+
+[node name="Ramen7" parent="." instance=ExtResource("2_bisa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02218, 2, 8.47543)
+
+[node name="Ramen8" parent="." instance=ExtResource("2_bisa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.14427, 2, -4.86974)
+
+[node name="Ramen9" parent="." instance=ExtResource("2_bisa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.52041, 2, -5.73725)
 
 [editable path="Block"]

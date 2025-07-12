@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c64u6l2cre1lk"]
+
+[ext_resource type="PackedScene" uid="uid://bst6epo1ysjji" path="res://blendfiles/Plains.blend" id="1_oj28h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8w73b"]
+albedo_color = Color(1.82897e-06, 0.585679, 0.266565, 1)
+
+[node name="Plains" instance=ExtResource("1_oj28h")]
+
+[node name="Grid" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8w73b")
+
+[node name="NavigationRegion3D" parent="Grid" index="1"]
+visible = false
