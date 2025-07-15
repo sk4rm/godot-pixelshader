@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6cvij2itu5yl"]
 
-[ext_resource type="Shader" uid="uid://u4n4s6t1fd0u" path="res://shaders/pixel_shader_v2.gdshader" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cyfe3e152muc5" path="res://scenes/camp.tscn" id="2_bo1nx"]
+[ext_resource type="Shader" uid="uid://lv8f6rfeyiab" path="res://shaders/pixel_shader_v3.gdshader" id="2_sugp2"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -10,14 +10,12 @@ size = Vector2(2, 2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0xm2m"]
 render_priority = 0
-shader = ExtResource("1_0wfyh")
-shader_parameter/normal_edge_bias = Vector3(1, 1, 1)
-shader_parameter/normal_edge_coefficient = 0.2
+shader = ExtResource("2_sugp2")
+shader_parameter/depth_threshold = 0.25
+shader_parameter/reverse_depth_threshold = 0.25
 shader_parameter/normal_threshold = 0.1
-shader_parameter/depth_edge_coefficient = 0.55
-shader_parameter/depth_threshold = 1.0
-shader_parameter/depth_smooth = 0.05
-shader_parameter/initial_inverse_depth_value = 0.5
+shader_parameter/outer_edge_brightness = 0.25
+shader_parameter/inner_edge_brightness = 1.25
 
 [node name="Main" type="Node3D"]
 
@@ -39,7 +37,9 @@ size = Vector2i(288, 162)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.914752, 0.0611431, -0.399362, 0, 0.988482, 0.151338, 0.404016, -0.138437, 0.904216, -1.73687, 2.20094, 3.74905)
+transform = Transform3D(0.914752, 0.150264, -0.375032, -2.79397e-08, 0.928262, 0.371926, 0.404016, -0.340221, 0.84913, -2.43596, 4.27548, 5.3319)
+projection = 1
+size = 4.80764
 
 [node name="PixelOutlinePPFX" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Camera3D"]
 extra_cull_margin = 16384.0

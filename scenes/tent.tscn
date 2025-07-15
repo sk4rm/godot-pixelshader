@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ccy2yct0ec8jp" path="res://blendfiles/Tent.blend" id="1_2jy8h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jy8h"]
-albedo_color = Color(0.87, 0.72645, 0.3915, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cho4n"]
 albedo_color = Color(0.348119, 0.173094, 0, 1)

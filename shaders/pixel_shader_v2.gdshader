@@ -169,8 +169,8 @@ void fragment() {
 	//// Visualize normal edge detection.
 	//ALBEDO = vec3(normal_indicator);
 
-	//// Visualize depth edge detection.
-	//ALBEDO = vec3(depth_indicator);
+	// Visualize depth edge detection.
+	ALBEDO = vec3(depth_indicator);
 
 	//// Visualize inverse depth edge detection.
 	//ALBEDO = vec3(inverse_depth_indicator);
